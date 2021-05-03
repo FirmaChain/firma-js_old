@@ -1,0 +1,53 @@
+{
+  "name": "@firmachain/firma-js",
+  "version": "0.1.0",
+  "description": "FirmaChain Javascript SDK",
+  "license": "MIT",
+  "author": "FirmaChain <developer@firmagroup.co>",
+  "homepage": "https://firmachain.org",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/firmachain/firma-js.git"
+  },
+  "keywords": [
+    "firma",
+    "firmachain"
+  ],
+  "bugs": {
+    "url": "https://github.com/firmachain/firma-js/issues"
+  },
+  "scripts": {
+    "build": "tsc --module commonjs",
+    "test": "jest",
+    "lint": "eslint src test --ext .ts,.tsx",
+    "doc": "typedoc",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.0.1",
+    "@types/node": "^15.0.1",
+    "@types/secp256k1": "^4.0.2",
+    "eslint": "^7.9.0",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "ts-loader": "^8.0.13",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bech32": "^2.0.0",
+    "bip32": "^2.0.6",
+    "bip39": "^3.0.4",
+    "crypto-js": "^4.0.0",
+    "secp256k1": "^4.0.2"
+  }
+}
