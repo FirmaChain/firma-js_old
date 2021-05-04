@@ -1,5 +1,5 @@
 import {Coin, Fee, StdTx} from "../message";
-import axios, {AxiosRequestConfig, AxiosResponse, Method} from "axios";
+import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
 import {DENOM, GAS_ADJUSTMENT, MIN_GAS_PRICE} from "../const";
 
 export * from "./api";
@@ -41,7 +41,7 @@ export class LCD {
     }
 
     public estimateGas(stdTx: StdTx, adj?: number, gasPrice?: number, denom?: string): Promise<Fee> {
-       if (!(stdTx instanceof StdTx))
+        if (!(stdTx instanceof StdTx))
             throw 'stdTx must be StdTx';
 
         const body = {
@@ -55,7 +55,7 @@ export class LCD {
                     reject(new Error('Estimate transaction gas failed'));
 
                 const gas: number = parseInt(json.result.adjusted);
-                const amount = Math.ceil(gasPrice || this.gasPrice).toString();
+                const amount = Math.ceil(gas * (gasPrice || this.gasPrice)).toString();
 
                 const coin: Coin = new Coin(amount, denom || this.denom);
 
