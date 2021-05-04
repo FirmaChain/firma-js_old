@@ -1,6 +1,6 @@
 {
-  "name": "@firmachain/firma-js",
-  "version": "0.1.0",
+  "name": "firma-js",
+  "version": "0.1.0-beta2",
   "description": "FirmaChain Javascript SDK",
   "license": "MIT",
   "author": "FirmaChain <developer@firmagroup.co>",

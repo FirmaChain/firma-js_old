@@ -10,6 +10,9 @@ const firma = new Firma(chainId, lcdUrl);
 // get account info
 firma.account.getAccount(testAccount.accAddress).then(console.log);
 
+// get firma balance
+firma.account.getBalance(testAccount.accAddress).then(console.log);
+
 // get latest block number
 firma.blockchain.getBlockNumber().then(console.log);
 

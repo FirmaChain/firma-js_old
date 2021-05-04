@@ -2,6 +2,8 @@ import {Msg} from "./common/Msg";
 import {Fee} from "./common/Fee";
 import {Signature} from "./common/Signature";
 import {LCD} from "../lcd";
+import {parseDER} from "../wallet/sign";
+import {PublicKey} from "./common/PublicKey";
 
 export interface StdTxValue {
     fee: Fee,
@@ -41,5 +43,12 @@ export class StdTx extends Msg {
 
     setSignatures(signatures: Signature[]) {
         this.value.signatures = signatures;
+    }
+
+    setLedgerSignature(signature: Buffer | Uint8Array, publicKey: Buffer | string) {
+        const buf = Buffer.from(parseDER(signature));
+        const sig = new Signature(buf, new PublicKey(publicKey));
+
+        this.setSignatures([sig]);
     }
 }

@@ -5,6 +5,7 @@ import {Wallet} from "./wallet";
 
 export * from "./message";
 export * from "./wallet";
+export * as utils from "./utils";
 
 export class Firma {
     public readonly chainId: string;
@@ -13,6 +14,7 @@ export class Firma {
 
     public readonly account: API.Account;
     public readonly blockchain: API.Blockchain;
+    public readonly contract: API.Contract;
     public readonly tx: API.Transaction;
 
     constructor(chainId: string, url: string, gasPrice?: number, gasAdjustment?: number, denom?: string) {
@@ -22,6 +24,7 @@ export class Firma {
 
         this.account = new API.Account(this.lcd);
         this.blockchain = new API.Blockchain(this.lcd);
+        this.contract = new API.Contract(this.lcd);
         this.tx = new API.Transaction(this.lcd);
     }
 

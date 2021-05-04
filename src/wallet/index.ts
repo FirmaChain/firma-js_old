@@ -5,8 +5,7 @@ import cryptoJS from "crypto-js";
 import {publicKeyCreate} from "secp256k1";
 import {ADDRESS_PREFIX, HD_PATH} from "../const";
 import {PublicKey, Signature, StdTx, UnsignedStdTx} from "../message";
-import {signJSON} from "./sign";
-import {LCD} from "../lcd";
+import * as signUtils from "./sign";
 import {AccAddress} from "../type";
 
 interface KeyPair {
@@ -21,6 +20,8 @@ export class Wallet implements KeyPair {
     publicKey: Buffer;
     accountNumber?: number;
 
+    public static utils = signUtils;
+
     constructor(privateKey: Buffer) {
         const {publicKey, accAddress} = Wallet.keyPairFromPrivate(privateKey);
         this.privateKey = privateKey;
@@ -31,7 +32,7 @@ export class Wallet implements KeyPair {
     signStdTx(stdTx: StdTx, chainId: string, account_number: string, sequence: string) {
         const uStdTx = new UnsignedStdTx(stdTx, account_number, chainId, sequence).sort();
 
-        const {signature} = signJSON(uStdTx, this.privateKey);
+        const {signature} = signUtils.signJSON(uStdTx, this.privateKey);
 
         const pubKey = new PublicKey(this.publicKey);
         const signObj = new Signature(signature, pubKey);
@@ -70,7 +71,7 @@ export class Wallet implements KeyPair {
     }
 
     static keyPairFromPrivate(privateKey: Buffer | undefined): KeyPair {
-        if(typeof privateKey === 'undefined')
+        if (typeof privateKey === 'undefined')
             throw new Error('privateKey is undefined.');
 
         const pubKeyByte: Uint8Array = publicKeyCreate(privateKey);
