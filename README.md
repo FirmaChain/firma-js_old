@@ -15,7 +15,7 @@ npm i @firmachain/firma-js
 
 ## Usage
 ### Initializing SDK
-```
+```js
 const {Firma} = require('@firmachain/firma-js');
 
 const chainId = 'imperium-0001';
@@ -25,7 +25,7 @@ const firma = new Firma(chainId, lcdUrl);
 ```
 
 ### Create account
-```
+```js
 const {Wallet} = require('@firmachain/firma-js');
 
 const mnemonic = Wallet.generateMnemonic();
@@ -37,7 +37,7 @@ console.log(wallet.accAddress);
 ```
 
 ### Import account by private key
-```
+```js
 const {Wallet} = require('@firmachain/firma-js');
 
 const wallet = Wallet.fromPrivateKey(privateKey);
@@ -46,7 +46,7 @@ console.log(wallet.accAddress);
 ```
 
 ### Get current block number
-```
+```js
 firma.blockchain.getBlockNumber().then((blockNumber) => {
     console.log(blockNumber);
 }).catch((e) => {
@@ -55,7 +55,7 @@ firma.blockchain.getBlockNumber().then((blockNumber) => {
 ```
 
 ### Get FIRMA balance of specific account
-```
+```js
 firma.account.getBalance(address).then((balance) => {
     console.log(balance);
 }).catch((e) => {
@@ -64,7 +64,7 @@ firma.account.getBalance(address).then((balance) => {
 ```
 
 ### Get transaction by hash
-```
+```js
 firma.tx.getTransactionByHash(txHash).then((tx) => {
     console.log(tx)
 }).catch((e) => {
@@ -73,14 +73,14 @@ firma.tx.getTransactionByHash(txHash).then((tx) => {
 ```
 
 ### Create Message (MsgSend) & StdTx
-```
+```js
 const {MsgSend, StdTx} = require('@firmachain/firma-js');
 const msg = new MsgSend(fromAddress, toAddress, (1 * 10 ** 6)); //send 1 FIRMA to toAddress
 const stdTx = new StdTx(msg);
 ```
 
 ### Calculate gas
-```
+```js
 const gasAdjustment = 2;
 firma.tx.estimateGas(stdTx, gasAdjustment).then((fee) => { 
     // return Fee object
@@ -91,7 +91,7 @@ firma.tx.estimateGas(stdTx, gasAdjustment).then((fee) => {
 ```
 
 ### Sign Transaction & Broadcast Transaction
-```
+```js
 const {Wallet} = require('@firmachain/firma-js');
 const wallet = Wallet.fromPrivateKey(privateKey);
 
@@ -107,7 +107,7 @@ firma.signStdTx(stdTx, wallet).then((tx) => {
 ```
 
 ### Shortcut of sign transaction
-```
+```js
 firma.createAndSign(wallet, msg).then((signedTx) => {
     firma.tx.broadcast(signedTx).then(console.log)
 })
