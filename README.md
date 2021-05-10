@@ -1,5 +1,4 @@
 # firma-js
----
 Javascript SDK for FirmaChain
 
 npm link
