@@ -47,7 +47,7 @@ console.log(wallet.accAddress);
 
 ### Get current block number
 ```
-firma.account.getBlockNumber().then((blockNumber) => {
+firma.blockchain.getBlockNumber().then((blockNumber) => {
     console.log(blockNumber);
 }).catch((e) => {
     console.error(e);
