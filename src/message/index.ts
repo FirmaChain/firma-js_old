@@ -10,5 +10,6 @@ export * from "./StdTx";
 export * from "./UnsignedStdTx";
 export * from "./AddContract";
 export * from "./MsgMintNFT";
+export * from "./MsgDelegateMintNFT";
 export * from "./MsgBurnNFT";
 export * from "./MsgTransferNFT";

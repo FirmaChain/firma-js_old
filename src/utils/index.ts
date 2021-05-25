@@ -1,3 +1,7 @@
+import {AccAddress} from "../type";
+import {bech32} from "bech32";
+import {ADDRESS_PREFIX} from "../const";
+
 export const sortObject = (msg: any): any => {
     if (msg === null)
         return null;
@@ -15,3 +19,14 @@ export const sortObject = (msg: any): any => {
 
     return result;
 };
+
+export const isValidAccAddress = (accAddress: AccAddress): boolean => {
+    if (!accAddress)
+        return false;
+
+    try {
+        return bech32.decode(accAddress).prefix === ADDRESS_PREFIX;
+    } catch (e) {
+        return false;
+    }
+}
