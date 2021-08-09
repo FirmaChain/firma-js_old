@@ -113,6 +113,42 @@ firma.createAndSign(wallet, msg).then((signedTx) => {
 })
 ```
 
+### Mint NFT
+```js
+// MintNFT msg
+// image, tokenURI, description are metadata
+const msg = new MsgMintNFT("f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b", testAccount.accAddress, 'https://ipfs.infura.io:5001/api/v0/cat?arg=QmfWVHyTiVXscS4kHENQRXKD5ug1qd2UQJAE6aCX5ch2Eq', "test description", "https://ipfs.infura.io:5001/api/v0/cat?arg=QmTF7NerdGZhnDPJj3Yj51gqH18o8kLtgkgtVjMLk1V9tx");
+
+firma.createAndSign(wallet, msg).then((signedTx) => {
+    firma.tx.broadcast(signedTx).then(console.log)
+}).catch(console.error)
+
+```
+
+### Transfer NFT
+```js
+// TransferNFT msg
+const msg = new MsgTransferNFT("f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b", testAccount.accAddress, 'firma1rhfahdeh2f644f8mjeclyzp2jn9cshs0md8z5a');
+
+firma.createAndSign(wallet, msg).then((signedTx) => {
+    firma.tx.broadcast(signedTx).then(console.log)
+}).catch(console.error);
+```
+
+
+### Burn NFT
+```js
+// BurnNFT msg
+const msg = new MsgBurnNFT("f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b", testAccount.accAddress);
+
+firma.createAndSign(wallet, msg).then((signedTx) => {
+    firma.tx.broadcast(signedTx).then(console.log)
+}).catch(console.error);
+
+```
+
+
+
 ## License
 MIT
 [See LICENSE](https://github.com/FirmaChain/firma-js/blob/main/LICENSE)
